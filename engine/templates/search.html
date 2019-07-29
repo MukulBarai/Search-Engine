@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Google</title>
+  <meta name="description" content="Search the web for sites and images.">
+  <meta name="keywords" content="Search engine, doodle, websites">
+  <meta name="author" content="Reece Kenney">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-2 d-flex align-items-center">
+        <a href="{% url 'index' %}" class="d-block">
+          <img class="img-fluid" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+        </a>
+      </div>
+      <div class="col-8 row mx-0 d-flex align-items-center">
+        <form class="flex-fill" action="{% url 'search' %}" method="get">
+          <input type="text" name="type" value="{{type}}" class="d-none">
+          <input type="number" name="page" value="{{pageNum}}" class="d-none">
+          <input class="form-control" name="term" value="{{term}}" required="">
+          <button type="submit" class="d-none"></button>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-8 px-0">
+        <ul class="nav justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'search' %}?type=sites&term={{term}}&page=1">ALL</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'search' %}?type=images&term={{term}}&page=1" class="nav-link">IMAGES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">NEWS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">MORE</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="my-2">
+
+  {% if ifSites %}
+  <!-- Search result -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="search-item mb-2">
+            <p>{{resultNum }} results found</p>
+          </div>
+          {% for page in allPages %}
+	          <div class="search-item card mb-2 p-2">
+	            <a href="{{page.url}}"><h4 class='my-0'>{{page.title}}</h4></a>
+	            <p class='text-success my-0'>{{page.url}}</p>
+	            <p>{{page.description}}</p>
+	          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="container">
+      <div class="row mx-0">
+        {% for image in allImgs %}
+          <div class="image-item col-md-3 col-sm-6 p-1">
+            <div class="card p-1">
+              <a href="{{image.url}}"><img src="{{image.src}}" class="img-fluid" style="width: 500px; max-height: 200px" title=""></a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <!-- Pagination -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <ul class="pagination my-5">
+          {% for num in numbers %}
+            <li class="page-item"><a class="page-link" href="{% url 'search' %}?type={{type}}&page={{num}}&term={{term}}">{{num}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

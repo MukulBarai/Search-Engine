@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Google</title>
+  <meta name="description" content="Search the web for sites and images.">
+  <meta name="keywords" content="Search engine, doodle, websites">
+  <meta name="author" content="Reece Kenney">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 d-flex px-0 align-items-center" style="height: 100vh">
+        <div class="flex-fill mb-5">
+          <div class="text-center clearfix my-4">
+            <h1>Doogle</h1>
+          </div>
+          <form class="mb-4 d-flex flex-column" action="{% url 'search' %}" method="get">
+            <input type="text" placeholder="Type something" class="form-control" name="term" required="">
+            <input type="text" name="type" value="sites" class="d-none">
+            <input type="number" name="page" value="1" class="d-none">
+            <button type="submit" class="btn btn-success d-none">Submit</button>
+          </form>
+          <div class="d-flex justify-content-around">
+            <a href="" class="btn btn-light">Crawling pages</a>
+            <a href="" class="btn btn-light">Felling lucky</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

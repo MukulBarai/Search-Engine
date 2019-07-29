@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Google</title>
+  <meta name="description" content="Search the web for sites and images.">
+  <meta name="keywords" content="Search engine, doodle, websites">
+  <meta name="author" content="Reece Kenney">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 d-flex px-0 align-items-center" style="height: 100vh">
+        <div class="flex-fill mb-5">
+          <div class="text-center clearfix my-4">
+            <h1>Doodle</h1>
+          </div>
+          <form class="mb-4 d-flex" action="{% url 'insert' %}" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="text" placeholder="Enter a address" class="form-control" name="url" required="">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-success">Insert</button>
+              </div>
+            </div>
+          </form>
+          <form class="d-flex justify-content-center" action="{% url 'crawl' %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-info" type="submit">Crawl the engine</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
