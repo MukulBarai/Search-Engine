@@ -8,7 +8,8 @@ class Page(models.Model):
     crawled = models.IntegerField(default=0)
     broken = models.BooleanField(default=0)
     clicks = models.IntegerField(default=0)
-    def __str__(self): return self.url
+    def __str__(self): 
+        return self.url
 
 
 class Image(models.Model):
@@ -18,5 +19,6 @@ class Image(models.Model):
     alt = models.CharField(max_length=200)
     broken = models.BooleanField(default=0)
     clicks = models.IntegerField(default=0)
-    def __str__(self): return self.src
+    def __str__(self): 
+        return self.src
 
