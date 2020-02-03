@@ -15,7 +15,6 @@ class Parse:
             hrefs = [link['href'] for link in links]
             return list(dict.fromkeys(hrefs))
         except Exception as e:
-            print("Error in getUrls function")
             return []
 
     def getImgSrcs(self):
@@ -23,7 +22,6 @@ class Parse:
             imgLinks = self.soup.findAll('img', {'src': True})
             return imgLinks
         except Exception as e:
-            print("Error in getImgSrcs function")
             return []
 
     def getTitle(self):
@@ -31,7 +29,6 @@ class Parse:
             title = self.soup.findAll('title')[0].text
             return title
         except Exception as e:
-            print("Error in getTitle function")
             return ""
 
     def getDescription(self):
@@ -39,7 +36,6 @@ class Parse:
             metas = self.soup.findAll('meta', {'name': 'description'})
             return metas[0]['content']
         except Exception as e:
-            print("Error in getDescription function")
             return ""
 
     def getKeywords(self):
@@ -47,7 +43,6 @@ class Parse:
             metas = self.soup.findAll('meta', {'name': 'keywords'})
             return metas[0]['content']
         except Exception as e:
-            print("Error in getKeywords function")
             return ""
 
 if(__name__ == "__main__"):
